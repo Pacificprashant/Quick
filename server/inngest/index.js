@@ -1,4 +1,4 @@
-import User from "../models/User"
+import User from "../models/User.js"
 import { Inngest } from "inngest";
 
 export const inngest = new Inngest({ id: "my-movie_ticket-booking" });
@@ -28,8 +28,8 @@ const syncUserDeletion = inngest.createFunction(
 )
 
 const syncUserUpdation = inngest.createFunction(
-    {id:'delete-user-with-clerk'},
-    {event:'clerk/user.deleted'},
+    {id:'update-user-from-clerk'},
+    {event:'clerk/user.updated'},
     async({event}) =>{
         const {id,first_name,last_name,email_addresses,image_url} = event.data
         const userData = {
