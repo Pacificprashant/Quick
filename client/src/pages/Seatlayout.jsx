@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { assets, dummyDateTimeData, dummyShowsData } from "../assets/assets";
 import Loading from "../components/Loading";
 import { ArrowRightIcon, ClockIcon } from "lucide-react";
-// import isoTimeFormat from "../lib/isoTimeFormat";
+import isoTimeFormat from "../lib/isoTimeFormat";
 import BlurCircle from "../components/BlurCircle";
   import   toast  from 'react-hot-toast'
 
@@ -51,6 +51,7 @@ const Seatlayout = () => {
         </div>
     ) 
     useEffect(()=>{
+      window.scrollTo(0, 0);
     getShow()
     },[])
     
@@ -66,7 +67,7 @@ const Seatlayout = () => {
                              rounded-r-md cursor-pointer
                         transition ${selectedTime?.time === item.time ? "bg-primary text-white":"hover:bg-primary/20"} `}>
                             <ClockIcon className=" w-4 h-4"/>
-                            <p className="text-sm">{(item.time)}</p>
+                            <p className="text-sm">{isoTimeFormat(item.time)}</p>
                         </div>
                     ))}
                 </div>
@@ -93,7 +94,7 @@ const Seatlayout = () => {
                     </div>
                 </div>
                 <button onClick={() => navigate('/my-booking')} className="flex items-center gap-1 mt-20 
-                px-10 py-10 text-sm bg-primary
+                px-10 py-3 text-sm bg-primary
                 hover:bg-primary-dull transition rounded-full font-medium cursor-pointer
                 active:scale-95"> Proceed to checkout
                 <ArrowRightIcon strokeWidth={3} className="w-4 h-4"/></button>
